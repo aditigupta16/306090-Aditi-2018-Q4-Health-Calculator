@@ -3,7 +3,7 @@ import { Text, View, TextInput, Button } from "react-native";
 
 export default class BMIScreen extends React.Component {
   handlePress = (weight, height) => {
-    fetch("http://localhost:8000/api/bmi-calculator/", {
+    fetch("http://192.168.86.49:8000/api/bmi-calculator/", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -15,7 +15,10 @@ export default class BMIScreen extends React.Component {
       })
     })
       .then(response => response.json())
-
+      .then(data => {
+        this.setState({ bmi: data.bmi });
+        console.log(this.state.bmi);
+      })
       .catch(error => {
         console.error(error);
       });
@@ -25,10 +28,9 @@ export default class BMIScreen extends React.Component {
     this.state = {
       height: "",
       weight: "",
-      error: false
+      error: false,
+      bmi: ""
     };
-
-    this.handlePress = this.handlePress.bind(this);
   }
 
   render() {
@@ -47,6 +49,13 @@ export default class BMIScreen extends React.Component {
         />
         <Text> Height </Text>
         <Button onPress={this.handlePress} title="Calculate" />
+        <View>
+          {this.state.bmi ? (
+            <Text> Your BMI is {this.state.bmi}</Text>
+          ) : (
+            <Text />
+          )}
+        </View>
       </View>
     );
   }
