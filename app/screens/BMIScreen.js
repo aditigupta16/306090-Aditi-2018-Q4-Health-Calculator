@@ -3,7 +3,7 @@ import { Text, View, TextInput, Button } from "react-native";
 
 export default class BMIScreen extends React.Component {
   handlePress = (weight, height) => {
-    fetch("http://192.168.86.76:8000/api/bmi-calculator/", {
+    fetch("http://192.168.1.5:8000/api/bmi-calculator/", {
       method: "POST",
       headers: {
         Accept: "application/json",

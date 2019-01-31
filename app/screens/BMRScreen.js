@@ -1,9 +1,9 @@
 import React from "react";
 import { Text, View, TextInput, Button, Picker } from "react-native";
 
-export default class BMIScreen extends React.Component {
+export default class BMRScreen extends React.Component {
   handlePress = (weight, height, age, gender, activity) => {
-    fetch("http://192.168.86.76:8000/api/bmr-calculator/", {
+    fetch("http://192.168.1.5:8000/api/bmr-calculator/", {
       method: "POST",
       headers: {
         Accept: "application/json",

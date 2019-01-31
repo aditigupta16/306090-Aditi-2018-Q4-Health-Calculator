@@ -3,7 +3,7 @@ import { Text, View, TextInput, Button, Picker } from "react-native";
 
 export default class WeightTarget extends React.Component {
   handlePress = (weight, height, age, gender, activity, target, days) => {
-    fetch("http://192.168.1.3:8000/api/weight-target-calculator/", {
+    fetch("http://192.168.1.5:8000/api/weight-target-calculator/", {
       method: "POST",
       headers: {
         Accept: "application/json",
