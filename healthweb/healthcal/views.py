@@ -60,7 +60,6 @@ class WeightTargetAPI(APIView):
                       }	
 
     def post(self, request, *args, **kwargs):
-    	import ipdb;ipdb.set_trace()
         weight = get_weight_in_pounds(request.data['weight'])
         target_weight = get_weight_in_pounds(request.data['target'])
         height = get_height_in_inches(request.data['height'])
@@ -77,3 +76,58 @@ class WeightTargetAPI(APIView):
         calories_required_to_consume = total_calories_required - calories_required_to_lose_per_day
         calories_required_to_consume = int(round(calories_required_to_consume, 1))
         return Response(data={'calories_required_to_consume: calories_required_to_consume'}, status=status.HTTP_200_OK)
+
+class MealsAPI(APIView):
+
+	def get(self, request, *args, **kwargs):
+		meals =[
+		{'name': 'Oats Idli',
+		 'description': 'Experience the goodness of feather-light idlis made of oats.'
+		                 'Idli is a popular South Indian treat that you can relish in '
+		                 'any course of your meal',
+		 'calories': '30 Calories/idli'},
+		{'name': 'Moong Dal Cheela',
+		 'description': 'nutrition packed Indian pancakes. '
+		                 'Whip up a batter made of stocked with moong dal, paneer and veggies inside.',
+		 'calories': '36 Calories/cheela'},
+		{'name': 'Poha',
+		 'description': 'An easy to make dose of your much needed morning nutrition, heaped with subtle ' 
+		                 'flavours. Pressed rice is cooked with some of your favourite veggies, spiced up '
+		                 'and seasoned to perfection.',
+		  'calories': '206/serving'},
+		{'name': 'Moong Daal Khichdi',
+		 'description': 'Healthy combination of green moong dal and rice. This is one of the most nutritious rice recipes, '
+		 				'which is easy in preparation and tastes great.',
+		 'calories': '176 Calories/serving'
+		},
+		{'name': 'Ragi Dosa',
+		 'description': 'Ragi is beneficial for weight watchers. It is high in fiber and has'
+		 			    'mono saturated fat',
+		 'calories': '85 Calories/dosa'
+		},
+		{'name': 'Buttermilk',
+		 'description': 'low in fat and helps in digestion. It is rich in potassium, calcium,'
+		                'phosphorus and Vitamin B12.',
+		 'calories': '32 Calories/glass'
+		},
+		{'name': 'Sprouts Salad',
+		 'description': 'high in fibre and make a healthy snack for weight watchers. Just adding'
+		 			    ' a few drops of lime and salt makes it tasty along with healthy.',
+		 'calories': '95 Calories/100 grams'
+		},
+		{'name': 'Dhokla',
+		 'description': 'Prepared from fermented ground flour dhokla is a top favourite'
+		 			    'Gujarati dish. The fermented ground flour is steamed to prepare dhokla.',
+		 'calories': '25 Calories/piece'
+		},
+		{'name': 'Dalia',
+		 'description': 'very light and healthy option for breakfast. It is an excellent '
+		 				'source of fiber that helps to maintain healthy digestive system.',
+		 'calories': '300 Calories/serving'
+		},
+		]
+
+		return Response(data=meals, status=status.HTTP_200_OK)
+
+
+
